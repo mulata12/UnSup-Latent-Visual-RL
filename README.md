@@ -43,8 +43,7 @@ Run it locally instead with `pip install -r requirements-demo.txt && python demo
 10. [Configuration reference](#10-configuration-reference)
 11. [Limitations](#11-limitations)
 12. [Future work](#12-future-work)
-13. [References](#13-references)
-14. [License and citation](#14-license-and-citation)
+13. [License and citation](#14-license-and-citation)
 
 ---
 
@@ -254,8 +253,7 @@ The notebook and the package implement the same pipeline; the reported results w
 ## 8. Getting started
 
 ### Option A: Google Colab (recommended)
-1. Open `notebooks/visual_rl_complete_walkthrough.ipynb` in Colab and select a **GPU** runtime.
-2. Use `PROFILE = "quick"` first (minutes) to verify the setup, then `PROFILE = "full"` with `USE_DRIVE = True`. Finished runs are cached and skipped, so you can resume after a disconnect.
+1. Open `notebooks/latent_visual_RL.ipynb` in Colab and select a **GPU** runtime.
 
 ### Option B: local / command line
 ```bash
@@ -316,6 +314,6 @@ Any setting can be overridden, e.g. `--set autoencoder.latent_dim=32 --set exper
 - Other RL algorithms (PPO) and harder environments (Acrobot, CarRacing, Atari).
 
 
-## 14. License and citation
+## 13. License and citation
 
 Released under the MIT License (see `LICENSE`). If you use this work, please cite it using `CITATION.cff`.
