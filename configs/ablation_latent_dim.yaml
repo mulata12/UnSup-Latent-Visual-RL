@@ -1,0 +1,4 @@
+# Extends the default setup; run with:  python -m latent_visual_rl ablation --config configs/ablation_latent_dim.yaml
+# (same experiment name as default => results are analysed together with the main runs)
+experiment:
+  name: main

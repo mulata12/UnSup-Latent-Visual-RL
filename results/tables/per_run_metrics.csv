@@ -1,0 +1,3 @@
+method,seed,final_reward,best_reward,auc_reward,steps_to_threshold,time_to_threshold_s,rl_time_total_s,pipeline_time_total_s
+latent_dqn_z16,0,52.1,151.6,68.55555555555556,,,323.15681076049805,652.1530935764313
+pixel_dqn,0,20.400000000000002,42.4,21.144444444444446,,,308.47180247306824,308.47180247306824

@@ -1,0 +1,15 @@
+# Tiny end-to-end run (~minutes on CPU) to verify the installation. Not for reporting results.
+autoencoder:
+  num_frames: 1500
+  epochs: 2
+agent:
+  total_timesteps: 3000
+  eval_every_steps: 1000
+  eval_episodes: 2
+  success_threshold: 20.0
+  dqn_pixel:
+    learning_starts: 500
+    buffer_size: 3000
+experiment:
+  name: smoke_test
+  seeds: [0, 1]

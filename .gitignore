@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+
+# IDE / Editor configurations and cache
+.vscode/
+.idea/
+.DS_Store
+.ipynb_checkpoints/
+
+# Visual RL Project - Heavy Training Runs (Data & Checkpoints)
+full/
+*.npz
+*.zip
+
+# Ignore temporary local runner notebooks to keep only master code
+notebooks/colab_runner.ipynb
+
+# Ignore development/debug test results or untracked temporary archives
+*.pt
+*.pth
+
+# Keep demo assets ignored EXCEPT the ones verified by the release pipeline
+demo_assets/*.zip

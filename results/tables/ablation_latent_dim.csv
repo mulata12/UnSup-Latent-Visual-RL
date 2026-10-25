@@ -1,0 +1,8 @@
+,final_reward,final_reward,auc_reward,auc_reward,pipeline_time_total_s,pipeline_time_total_s
+,mean,std,mean,std,mean,std
+latent_dim,,,,,,
+4,81.1,,83.5,,639.5,
+8,71.4,,67.6,,630.7,
+16,52.1,,68.6,,652.2,
+32,96.3,,77.5,,636.5,
+64,69.0,,61.7,,639.5,

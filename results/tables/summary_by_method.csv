@@ -1,0 +1,3 @@
+method,final_reward_mean,final_reward_std,best_reward_mean,best_reward_std,auc_reward_mean,auc_reward_std,steps_to_threshold_mean,steps_to_threshold_std,time_to_threshold_s_mean,time_to_threshold_s_std,rl_time_total_s_mean,rl_time_total_s_std,pipeline_time_total_s_mean,pipeline_time_total_s_std,runs_reaching_threshold
+latent_dqn_z16,52.1,,151.6,,68.6,,,,,,323.2,,652.2,,0/1
+pixel_dqn,20.4,,42.4,,21.1,,,,,,308.5,,308.5,,0/1
