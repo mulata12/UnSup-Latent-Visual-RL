@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1+-red.svg)](https://pytorch.org/)
-[![Gradio Demo](https://img.shields.io/badge/Gradio-Live%20Demo-orange.svg)](https://a1e468e3e21a5be60c.gradio.live)](https://github.com/gradio-app/gradio)
+[![Gradio Demo](https://img.shields.io/badge/Gradio-Live%20Demo-orange.svg)](https://20c96f0ccd4f942cd2.gradio.live)](https://a1e468e3e21a5be60c.gradio.live)](https://github.com/gradio-app/gradio)
 
 A production-ready PyTorch implementation of decoupled state representation learning for sample-efficient visual Reinforcement Learning (RL) on Gymnasium environments. This project demonstrates that decoupling representation learning from policy optimization significantly increases sample efficiency and training stability under pixel-only observation constraints.
 
