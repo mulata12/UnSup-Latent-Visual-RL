@@ -1,14 +1,14 @@
 # Unsupervised State
-[![Streamlit App](https://static.streamlit.io/badge/v2.svg)](https://unsup-latent-visual-rl.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badge/v2.svg)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app//)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)
 
 ## 🔗 Interactive Live Demo
-Play with the full interactive app live on Streamlit Community Cloud: **[Open Permanent Streamlit Demo](https://unsup-latent-visual-rl.streamlit.app)**
+Play with the full interactive app live on Streamlit Community Cloud: **[Open Permanent Streamlit Demo](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)**
 
 
-[![Streamlit App](https://static.streamlit.io/badgeweight/v2.svg)](https://unsup-latent-visual-rl.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badge/v2.svg)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app//)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)
 
 ## 🔗 Live Application
-Deploy and run this project interactively: **[Open Permanent Streamlit App](https://unsup-latent-visual-rl.streamlit.app)**
+Deploy and run this project interactively: **[Open Permanent Streamlit App](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)**
 
  Representation Learning for Sample-Efficient Visual Reinforcement Learning
 
