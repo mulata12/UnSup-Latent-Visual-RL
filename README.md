@@ -1,4 +1,10 @@
 # Unsupervised State
+[![Streamlit App](https://static.streamlit.io/badge/v2.svg)](https://unsup-latent-visual-rl.streamlit.app)
+
+## 🔗 Interactive Live Demo
+Play with the full interactive app live on Streamlit Community Cloud: **[Open Permanent Streamlit Demo](https://unsup-latent-visual-rl.streamlit.app)**
+
+
 [![Streamlit App](https://static.streamlit.io/badgeweight/v2.svg)](https://unsup-latent-visual-rl.streamlit.app)
 
 ## 🔗 Live Application
