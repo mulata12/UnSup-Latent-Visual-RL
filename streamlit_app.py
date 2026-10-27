@@ -82,9 +82,6 @@ st.sidebar.header("Configuration Panel")
 latent_dim = st.sidebar.selectbox("Select Bottleneck Size (Latent Dim)", [4, 8, 16, 32, 64], index=2)
 model, z_mean, z_std = load_model(latent_dim)
 
-if model is None:
-    st.sidebar.error(f"Weights file for z={latent_dim} not found in demo_assets/")
-
 # Main Tab Setup matching Gradio design
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "1 · Latent lens",
@@ -123,7 +120,7 @@ with tab1:
             st.subheader("Autoencoder Reconstruction")
             st.image(recon_img, width=256)
             st.write(f"**Standardised Latent Vector z**: {z_val}")
-    else:
+    else: 
         fig_path = Path("results/figures/reconstructions.png")
         if fig_path.exists():
             st.image(str(fig_path), caption="Cached Autoencoder Reconstruction Results (Top: Raw input, Bottom: Reconstructed representation)")
