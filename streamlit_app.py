@@ -49,20 +49,28 @@ class ConvAutoencoder(nn.Module):
         return self.decoder(z), z
 
 # -----------------------------------------------------
-# Load Pretrained Autoencoder weight safely
+# Load Pretrained Autoencoder weight safely with recursive search
 # -----------------------------------------------------
 @st.cache_resource
 def load_model(dim):
-    # Search in various potential paths to ensure it is always found
-    possible_paths = [
-        Path(f"demo_assets/cae_z{dim}.pt"),
-        Path(f"../demo_assets/cae_z{dim}.pt"),
-        Path(f"/content/drive/MyDrive/latent-visual-RL-project/demo_assets/cae_z{dim}.pt")
-    ]
-    checkpoint_path = next((p for p in possible_paths if p.exists()), None)
-    if checkpoint_path is None:
-        return None, None, None
+    # Find the repository root dynamically regardless of deployment environment
+    current_dir = Path(__file__).resolve().parent
     
+    # Walk up the tree to find the directory containing 'demo_assets'
+    assets_dir = None
+    for parent in [current_dir] + list(current_dir.parents):
+        candidate = parent / "demo_assets"
+        if candidate.exists() and candidate.is_dir():
+            assets_dir = candidate
+            break
+            
+    if assets_dir is None:
+        return None, None, None
+        
+    checkpoint_path = assets_dir / f"cae_z{dim}.pt"
+    if not checkpoint_path.exists():
+        return None, None, None
+
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     model = ConvAutoencoder(dim)
     model.load_state_dict(checkpoint["state_dict"])
@@ -79,23 +87,23 @@ if model is None:
 
 # Main Tab Setup matching Gradio design
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "1 · Latent lens", 
-    "2 · Latent sweep", 
-    "3 · Bottleneck size", 
-    "4 · Live episode", 
+    "1 · Latent lens",
+    "2 · Latent sweep",
+    "3 · Bottleneck size",
+    "4 · Live episode",
     "5 · Experiment results"
 ])
 
 with tab1:
     st.header("1 · Latent Lens Visualization")
     st.write("Reconstructing 64x64 pixel frames through the trained self-supervised state representation bottleneck.")
-    
+
     uploaded_file = st.file_uploader("Upload raw 64x64 input frame", type=["png", "jpg", "jpeg"])
     if uploaded_file is not None:
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         img = cv2.imdecode(file_bytes, cv2.IMREAD_GRAYSCALE)
         img = cv2.resize(img, (64, 64), interpolation=cv2.INTER_AREA)
-        
+
         # Process frame
         x_tensor = torch.from_numpy(img).float().unsqueeze(0).unsqueeze(0) / 255.0
         if model is not None:
@@ -106,7 +114,7 @@ with tab1:
         else:
             recon_img = img
             z_val = []
-            
+
         col1, col2 = st.columns(2)
         with col1:
             st.subheader("Original Observation Frame (64x64)")
@@ -123,7 +131,7 @@ with tab1:
 with tab2:
     st.header("2 · Latent Coordinate Sweep")
     st.write("Manually tweak physical parameters to observe how the latent space maps coordinates.")
-    
+
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         cart_p = st.slider("Cart Position Control", -2.4, 2.4, 0.0, step=0.1)
@@ -133,19 +141,19 @@ with tab2:
         pole_a = st.slider("Pole Angle (Radians) Control", -0.4, 0.4, 0.0, step=0.02)
     with col4:
         pole_v = st.slider("Pole Angular Velocity Control", -3.0, 3.0, 0.0, step=0.1)
-        
+
     os.environ["SDL_VIDEODRIVER"] = "dummy"
     env = gym.make("CartPole-v1", render_mode="rgb_array")
     env.reset()
     env.unwrapped.state = np.array([cart_p, cart_v, pole_a, pole_v], dtype=np.float32)
-    
+
     # Capture env frame
     frame = env.render()
     cropped = frame[150:350]
     gray = cv2.cvtColor(cropped, cv2.COLOR_RGB2GRAY)
     resized = cv2.resize(gray, (64, 64), interpolation=cv2.INTER_AREA)
     env.close()
-    
+
     x_tensor = torch.from_numpy(resized).float().unsqueeze(0).unsqueeze(0) / 255.0
     if model is not None:
         with torch.no_grad():
@@ -155,7 +163,7 @@ with tab2:
     else:
         recon_img = resized
         z_vector_text = "Model not loaded"
-        
+
     colA, colB = st.columns(2)
     with colA:
         st.subheader("Synthesized Environment Frame")
@@ -168,7 +176,7 @@ with tab2:
 with tab3:
     st.header("3 · Bottleneck Size Evaluation")
     st.write("Observe reconstruction quality as a function of the bottleneck latent dimensionality (4, 8, 16, 32, 64).")
-    
+
     test_frame_path = Path("results/figures/reconstructions.png")
     if test_frame_path.exists():
         st.image(str(test_frame_path), caption="Reconstructions for various latent bottle size pipelines")
@@ -178,38 +186,38 @@ with tab3:
 with tab4:
     st.header("4 · Live Episode Simulation")
     st.write("Run an episode through the same observation pipeline as training (frozen encoder + 4-step latent stack) and watch the latent vector evolve.")
-    
+
     col1, col2, col3 = st.columns(3)
     with col1:
         policy_selection = st.selectbox("Policy", ["Random policy", "Trained Latent Agent (DQN)"])
-    with col2:
+    with col2: 
         env_seed = st.number_input("Environment seed", min_value=0, max_value=10000, value=0)
     with col3:
         latent_choice = st.selectbox("Latent size (random policy only)", ["z = 4", "z = 8", "z = 16", "z = 32", "z = 64"], index=2)
-        
+
     if st.button("Run episode"):
         st.success("Initializing Gym simulation... Running step evaluations!")
         env = gym.make("CartPole-v1", render_mode="rgb_array")
         env.reset(seed=env_seed)
-        
+
         steps = 0
         total_reward = 0.0
         terminated = False
         truncated = False
-        
+
         while not (terminated or truncated) and steps < 200:
             action = env.action_space.sample()
             _, reward, terminated, truncated, _ = env.step(action)
             total_reward += reward
             steps += 1
-            
+
         env.close()
         st.info(f"Episode finished! Steps run: {steps} | Total Cumulative Reward: {total_reward}")
 
 with tab5:
     st.header("5 · Quantitative Experiment Results")
     st.write("Compare metrics and performance directly from saved tables:")
-    
+
     summary_path = Path("results/tables/summary_by_method.csv")
     if summary_path.exists():
         df = pd.read_csv(summary_path)
