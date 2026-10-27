@@ -1,4 +1,17 @@
-# Unsupervised State
+# Unsupervised State Representation Learning for Sample-Efficient Visual Reinforcement Learning
+
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Demo_Application-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)
+
+---
+
+## 🔗 Interactive Live Demo
+
+You can play with the full interactive demonstration of this research project directly in your browser. Feel free to sweep latent dimensions, test visual reconstructions under custom state variables, and simulate live rollouts:
+
+👉 **[Launch the Live App on Streamlit Cloud](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)**
+
+---
+Unsupervised State
 [![Streamlit App](https://static.streamlit.io/badge/v2.svg)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app//)](https://unsup-latent-visual-rl-db3snkzft4wksvvm3tzeyb.streamlit.app/)
 
 ## 🔗 Interactive Live Demo
