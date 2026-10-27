@@ -1,4 +1,10 @@
-# Unsupervised State Representation Learning for Sample-Efficient Visual Reinforcement Learning
+# Unsupervised State
+[![Streamlit App](https://static.streamlit.io/badgeweight/v2.svg)](https://unsup-latent-visual-rl.streamlit.app)
+
+## 🔗 Live Application
+Deploy and run this project interactively: **[Open Permanent Streamlit App](https://unsup-latent-visual-rl.streamlit.app)**
+
+ Representation Learning for Sample-Efficient Visual Reinforcement Learning
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
